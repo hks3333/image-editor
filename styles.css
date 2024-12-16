@@ -9,13 +9,26 @@ body {
   border-bottom: 1px solid #545e81;
   position: fixed;
   height: 69px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 0px 32px;
 }
 
 .no-events {
   pointer-events: none;
 }
 
+.logo {
+  font-size: 32px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  flex: 1;
+}
+.filler {
+  flex: 1;
+}
 .controls {
+  flex: 1;
   display: flex;
   justify-content: center;
 }
@@ -55,12 +68,23 @@ a {
 .img-area {
   padding-top: 69px;
   min-height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .drag-helper {
-  padding-top: 8%;
+  position: absolute;
+  margin-bottom: 140px;
 }
 
 .invisible {
   display: none;
+}
+
+canvas {
+  padding: 5px;
+  /* border: 1px solid #545e81; */
 }

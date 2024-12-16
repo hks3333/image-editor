@@ -97,13 +97,25 @@ function makeCanvas() {
      * Abstracts the process of drawing an image on the canvas.
      * @param {HTMLImageElement} image
      */
-    drawImage(image) {
-      const { width, height } = image;
-      this.resize({ width, height });
+    // drawImage(image) {
+    //   const { width, height } = image;
+    //   this.resize({ width, height });
+    //   this.draw((context) => {
+    //     context.drawImage(image, 0, 0, width, height);
+    //   });
+    // },
+
+    drawImage(image, maxHeight = window.innerHeight - 90) {
+      const aspectRatio = image.width / image.height;
+      const newHeight = Math.min(image.height, maxHeight);
+      const newWidth = newHeight * aspectRatio;
+    
+      this.resize({ width: newWidth, height: newHeight });
       this.draw((context) => {
-        context.drawImage(image, 0, 0, width, height);
+        context.drawImage(image, 0, 0, newWidth, newHeight);
       });
     },
+
     /**
      * Performs mouse events on the canvas while the mouse is down.
      * Commits changes to the history once the mouse is released.

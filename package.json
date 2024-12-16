@@ -24,6 +24,7 @@
     "vite": "2.7.7"
   },
   "dependencies": {
-    "aws-sdk": "^2.1692.0"
+    "@aws-sdk/client-s3": "^3.712.0",
+    "fast-xml-parser": "^3.21.1"
   }
 }

@@ -1,8 +1,11 @@
 import { canvas } from "./canvas";
 
+const canvaser = document.getElementById('imageProcessed');
+
 // Load image drag and drop
 document.getElementById("dragAndDropZone").addEventListener("dragover", (e) => {
   e.preventDefault();
+  console.log("dragover event triggered");
 });
 
 document.getElementById("dragAndDropZone").addEventListener("drop", (e) => {
@@ -33,6 +36,7 @@ document.getElementById("dragAndDropZone").addEventListener("drop", (e) => {
 
 // Drawings
 document.getElementById("ellipseDraw").addEventListener("click", () => {
+  canvaser.style.cursor = 'crosshair';
   canvas.performWhileMouseDown(() => {
     const image = new Image();
     let x0, y0, position;
@@ -64,6 +68,7 @@ document.getElementById("ellipseDraw").addEventListener("click", () => {
 });
 
 document.getElementById("rectangleDraw").addEventListener("click", () => {
+  canvaser.style.cursor = 'crosshair';
   canvas.performWhileMouseDown(() => {
     const image = new Image();
     let startX, startY, position;
@@ -97,6 +102,7 @@ document.getElementById("rectangleDraw").addEventListener("click", () => {
 });
 
 document.getElementById("penDraw").addEventListener("click", () => {
+  canvaser.style.cursor = 'crosshair';
   canvas.performWhileMouseDown(() => {
     const onmousedown = ({ offsetX, offsetY }) => {
       canvas.drawWithoutCommit((context) => {
@@ -116,6 +122,7 @@ document.getElementById("penDraw").addEventListener("click", () => {
 });
 
 document.getElementById("lineDraw").addEventListener("click", () => {
+  canvaser.style.cursor = 'crosshair';
   canvas.performWhileMouseDown(() => {
     const image = new Image();
     let x, y, position;
@@ -145,6 +152,7 @@ document.getElementById("lineDraw").addEventListener("click", () => {
 
 // Crop
 document.getElementById("cropButton").addEventListener("click", () => {
+  canvaser.style.cursor = 'crosshair';
   canvas.performWhileMouseDown(() => {
     const image = new Image();
     let startX, startY, position, width, height;
@@ -292,3 +300,83 @@ document.getElementById("linkDownload").addEventListener("click", (e) => {
   if (canvas.isEmpty()) e.preventDefault();
   e.currentTarget.setAttribute("href", canvas.getOctetStream());
 });
+
+// document.getElementById("linkDownload").addEventListener("click", async (e) => {
+//   e.preventDefault(); 
+
+//   if (canvas.isEmpty()) {
+//     return;
+//   }
+
+//   // Get the image data
+//   const imageData = canvas.getOctetStream();
+
+//   // Convert the image data (data URL) to a Blob
+//   const blob = dataURItoBlob(imageData);
+
+//   // Upload to the server (Node.js backend)
+//   try {
+//     const formData = new FormData();
+//     formData.append('file', blob, 'edited_image.png');
+
+//     const response = await fetch('http://localhost:5000/upload', {
+//       method: 'POST',
+//       body: formData,
+//     });
+
+//     const data = await response.json();
+
+//     if (response.ok) {
+//       console.log('File uploaded successfully:', data.url);
+      
+//       // Optional: You might want to do something with the URL, like opening it or copying to clipboard
+//       navigator.clipboard.writeText(data.url)
+//         .then(() => {
+//           alert('Image uploaded successfully! URL copied to clipboard.');
+//         })
+//         .catch(err => {
+//           alert('Image uploaded successfully! URL: ' + data.url);
+//         });
+//     } else {
+//       console.error('Error uploading file:', data.message);
+//       alert('Upload failed: ' + data.message);
+//     }
+//   } catch (error) {
+//     console.error('Error uploading file:', error);
+//     alert('Upload failed');
+//   }
+// });
+
+// function dataURItoBlob(dataURI) {
+//   // Convert base64/URLEncoded data component to raw binary data
+//   let byteString;
+//   if (dataURI.split(',')[0].indexOf('base64') >= 0)
+//     byteString = atob(dataURI.split(',')[1]);
+//   else
+//     byteString = unescape(dataURI.split(',')[1]);
+
+//   // Separate out the mime component
+//   const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+//   // Write the bytes of the string to an ArrayBuffer
+//   const ab = new ArrayBuffer(byteString.length);
+//   const ia = new Uint8Array(ab);
+//   for (let i = 0; i < byteString.length; i++) {
+//     ia[i] = byteString.charCodeAt(i);
+//   }
+
+//   return new Blob([ab], {type: mimeString});
+// }
+
+// document.getElementById("linkDownload").addEventListener("click", async (e) => {
+//   e.preventDefault(); 
+
+//   if (canvas.isEmpty()) {
+//     return;
+//   }
+
+//   // Wait 3 seconds and then show an alert
+//   setTimeout(() => {
+//     alert("Image Uploaded Successfully!");
+//   }, 3000);
+// });
