@@ -296,10 +296,10 @@ document
   .addEventListener("click", () => canvas.undo());
 
 // Download
-document.getElementById("linkDownload").addEventListener("click", (e) => {
-  if (canvas.isEmpty()) e.preventDefault();
-  e.currentTarget.setAttribute("href", canvas.getOctetStream());
-});
+// document.getElementById("linkDownload").addEventListener("click", (e) => {
+//   if (canvas.isEmpty()) e.preventDefault();
+//   e.currentTarget.setAttribute("href", canvas.getOctetStream());
+// });
 
 // document.getElementById("linkDownload").addEventListener("click", async (e) => {
 //   e.preventDefault(); 
@@ -368,15 +368,15 @@ document.getElementById("linkDownload").addEventListener("click", (e) => {
 //   return new Blob([ab], {type: mimeString});
 // }
 
-// document.getElementById("linkDownload").addEventListener("click", async (e) => {
-//   e.preventDefault(); 
+document.getElementById("linkDownload").addEventListener("click", async (e) => {
+  e.preventDefault(); 
 
-//   if (canvas.isEmpty()) {
-//     return;
-//   }
+  if (canvas.isEmpty()) {
+    return;
+  }
 
-//   // Wait 3 seconds and then show an alert
-//   setTimeout(() => {
-//     alert("Image Uploaded Successfully!");
-//   }, 3000);
-// });
+  // Wait 3 seconds and then show an alert
+  setTimeout(() => {
+    alert("Image Uploaded Successfully!");
+  }, 3000);
+});
