@@ -377,6 +377,6 @@ document.getElementById("linkDownload").addEventListener("click", async (e) => {
 
   // Wait 3 seconds and then show an alert
   setTimeout(() => {
-    alert("Image Uploaded Successfully!");
+    alert("Image Uploaded Failed!");
   }, 3000);
 });
